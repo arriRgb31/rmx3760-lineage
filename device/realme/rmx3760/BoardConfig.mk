@@ -90,4 +90,9 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_VENDORIMAGE_PARTITION_SIZE := 742723584
 
 # ---- Vendor blobs layout ----
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(PRODUCT_VENDOR_KERNEL_MODULES))
+# Kernel modules ship in vendor_dlkm (stock); the vendor image build picks
+# them up via device-vendor.mk from proprietary/vendor_dlkm. No in-tree
+# module build needed.
+BOARD_VENDOR_KERNEL_MODULES :=
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES :=
+BOARD_VENDOR_RAMDISK_FRAGMENTS :=

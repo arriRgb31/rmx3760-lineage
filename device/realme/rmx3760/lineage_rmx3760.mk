@@ -4,7 +4,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/media_products.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/transsion_soc.mk) # optional
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_products.mk)
 
 # Demo/updater
@@ -20,7 +19,6 @@ PRODUCT_MODEL := RMX3760
 PRODUCT_NAME := lineage_rmx3760
 
 # Hardware properties
-PRODUCT_DEVICE_HELL := ums9230_hulk
 PRODUCT_HARDWARE_PLATFORM := ums9230
 
 # Fstab to install into vendor_boot ramdisk (first stage)

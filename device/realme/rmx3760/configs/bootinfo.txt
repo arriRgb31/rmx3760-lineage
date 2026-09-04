@@ -1,0 +1,35 @@
+# Board / boot metadata for realme RMX3760 (UMS9230), extracted from live device
+ro.product.device=RMX3760
+ro.product.name=RMX3760
+ro.board.platform=ums9230
+ro.hardware=ums9230_hulk
+ro.boot.hardware=ums9230_hulk
+
+# A/B slots (boot image v4, GKI)
+slot_a.bonus=
+boot_a=/dev/block/mmcblk0p36
+boot_b=/dev/block/mmcblk0p37
+vendor_boot_a=/dev/block/mmcblk0p38
+vendor_boot_b=/dev/block/mmcblk0p39
+init_boot_a=/dev/block/mmcblk0p40
+init_boot_b=/dev/block/mmcblk0p41
+dtb_a=/dev/block/mmcblk0p42
+dtb_b=/dev/block/mmcblk0p43
+dtbo_a=/dev/block/mmcblk0p44
+dtbo_b=/dev/block/mmcblk0p45
+super=/dev/block/mmcblk0p47
+vbmeta_vendor_a=/dev/block/mmcblk0p59
+vbmeta_vendor_b=/dev/block/mmcblk0p60
+vbmeta_system_a=/dev/block/mmcblk0p57
+vbmeta_system_b=/dev/block/mmcblk0p58
+vbmeta_system_ext_a=/dev/block/mmcblk0p61
+vbmeta_system_ext_b=/dev/block/mmcblk0p62
+
+# AVB root_digests (sha256, for reference / signing verification)
+partition.vendor.verified.root_digest=185f5b581d534c269659c087d0aba4c953d3d9d3579318ac9251870b5aaa23b9
+partition.system.verified.root_digest=37b9e152ec7b5658022191bc2b6501034d78c88446c79e3382e686a9ef715060
+partition.system_ext.verified.root_digest=75f6a515167cade3c41692a562a68dc5d8edb2f13751c21baf0b5e21420da134
+partition.product.verified.root_digest=448b06d7253471530322e8d68d55f3566fb91dfbc2bb6a8d7bcc4f810ff8ad5f
+partition.odm.verified.root_digest=f4764b56f1ea1824f6372020aff6a074375f490dc0b9c4e9b7f889872ccec85d
+partition.vendor_dlkm.verified.root_digest=072336ee715038f8b519c907ffa81862924c9d3b385fd8f28d1513799e58c3a0
+partition.system_dlkm.verified.root_digest=04f85f3435cd5a1716cb18d0962ccdc155e09d6b6a3d1038cd7e88d3c0ac8324

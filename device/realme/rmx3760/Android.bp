@@ -1,0 +1,11 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+soong_namespace {
+    imports: [
+        "device/realme/rmx3760",
+        "kernel/realme/ums9230_a15",
+        "vendor/realme/rmx3760",
+    ],
+}

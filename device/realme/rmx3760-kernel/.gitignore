@@ -1,0 +1,5 @@
+# Kernel prebuilts are large binaries extracted from stock partitions,
+# not committed. See kernel/ repo for mainline source.
+/Image
+/dtbo.img
+/dtb.img

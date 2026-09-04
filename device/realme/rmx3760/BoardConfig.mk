@@ -18,13 +18,20 @@ BOARD_BOARD_PLATFORM := ums9230
 TARGET_BOARD_INFO_FILE := device/realme/rmx3760/configs/bootinfo.txt
 
 # ---- Kernel (GKI split, boot image v4) ----
+# Prebuilt stock kernel Image (5.15.178-android13-8-g0c749b198e8d-ab40), extracted
+# from live boot_a partition. Matches stock vendor_dlkm modules (no rebuild needed).
 TARGET_NO_KERNEL := false
 TARGET_PREBUILT_KERNEL := device/realme/rmx3760-kernel/Image
 BOARD_KERNEL_BINARIES := kernel
-# Kernel build from android_kernel_realme_ums9230_a15 (-ab40 vermagic, match vendor_dlkm stock)
-TARGET_KERNEL_SOURCE := kernel/realme/ums9230_a15
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=ums9230_hulk androidboot.hardware.platform=ums9230 androidboot.console=ttyMSM0 androidboot.selinux=enforcing
+# TODO(optional): rebuild from android_kernel_realme_ums9230_a15 to self-host mainline.
+# If enabled, set TARGET_KERNEL_SOURCE := kernel/realme/ums9230_a15
+TARGET_KERNEL_SOURCE := kernel/realme/ums9230_a15
+# cmdline from stock vendor_boot + bootconfig (androidboot.* lives in bootconfig)
+BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 bootconfig
+BOARD_BOOTCONFIG := \\
+    androidboot.hardware=ums9230_hulk \\
+    androidboot.dtbo_idx=15
 
 # Boot image v4 / GKI (kernel-only boot.img; dtb+ramdisk in vendor_boot)
 BOARD_BOOT_HEADER_VERSION := 4
@@ -33,21 +40,25 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := false
 BOARD_INCLUDE_RECOVERY_DTBO := false
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 
-# vendor_boot
+# vendor_boot (real vendor ramdisk; dtb packed in here)
 BOARD_VENDOR_BOOT_HEADER_VERSION := 4
 BOARD_VENDOR_BOOT_IMAGE_NAME := vendor_boot.img
 BOARD_PACK_VENDOR_BOOT := true
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 104857600
 TARGET_NO_RECOVERY := true
 
-# init_boot
+# init_boot (generic ramdisk)
 BOARD_INIT_BOOT_IMAGE_NAME := init_boot.img
 BOARD_BUILD_INIT_BOOT := true
+BOARD_INIT_BOOTIMAGE_PARTITION_SIZE := 8388608
 
-# DTBO / DTB
-BOARD_PREBUILT_DTBOIMAGE := device/realme/rmx3760-kernel/ums9230-1h10-overlay.dtbo
+# DTBO / DTB (Unisoc GKI: dtbo_image in dtbo partition; single-dtb dtbo image in vendor_boot)
+BOARD_PREBUILT_DTBOIMAGE := device/realme/rmx3760-kernel/dtbo.img
 BOARD_DTBOIMG_OUT := $(PRODUCT_OUT)/dtbo.img
-BOARD_DTB_IMG := device/realme/rmx3760-kernel/ums9230-base.dtb
+BOARD_DTB_IMG := device/realme/rmx3760-kernel/dtb.img
+BOARD_DTBOIMAGE_PARTITION_SIZE := 8388608
 
 # ---- A/B partition slots (seamless update) ----
 AB_OTA_UPDATER := true

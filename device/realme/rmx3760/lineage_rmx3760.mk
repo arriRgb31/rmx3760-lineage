@@ -21,15 +21,16 @@ PRODUCT_NAME := lineage_rmx3760
 # Hardware properties
 PRODUCT_HARDWARE_PLATFORM := ums9230
 
-# Fstab to install into vendor_boot ramdisk (first stage)
+# Fstab for first-stage mount (vendor ramdisk); vendor/etc copy ships from
+# stock blob tree (device-vendor.mk), so avoid a duplicate destination here.
 PRODUCT_COPY_FILES += \
-    device/realme/rmx3760/init/fstab.ums9230_hulk:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_mount/fstab.ums9230_hulk \
-    device/realme/rmx3760/init/fstab.ums9230_hulk:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.ums9230_hulk
+    device/realme/rmx3760/init/fstab.ums9230_hulk:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.ums9230_hulk
 
-# Init rc scripts
-PRODUCT_PACKAGES += \
-    init.ums9230_hulk.rc \
-    init.ums9230_hulk.usb.rc
+# Init rc scripts (installed via PRODUCT_COPY_FILES on init/<hardware>.rc; also
+# provided as modules below so PRODUCT_PACKAGES stays valid)
+PRODUCT_COPY_FILES += \
+    device/realme/rmx3760/init/init.ums9230_hulk.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.ums9230_hulk.rc \
+    device/realme/rmx3760/init/init.ums9230_hulk.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.ums9230_hulk.usb.rc
 
 # SoC configs
 PRODUCT_VENDOR_PROPERTIES += \

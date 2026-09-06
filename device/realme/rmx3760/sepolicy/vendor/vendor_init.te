@@ -1,0 +1,5 @@
+# vendor_init domain: allow basic init ops under /vendor and /odm
+type vendor_init, domain, mlstrustedsubject;
+type vendor_init_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(vendor_init)

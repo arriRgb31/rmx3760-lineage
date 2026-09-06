@@ -6,5 +6,4 @@ $(call inherit-product, vendor/realme/rmx3760/device-vendor.mk)
 
 PRODUCT_SOONG_NAMESPACES += \
     device/realme/rmx3760 \
-    vendor/realme/rmx3760 \
-    kernel/realme/ums9230_a15
+    vendor/realme/rmx3760
